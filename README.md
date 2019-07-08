@@ -1,14 +1,18 @@
-# data-project
+# todo-list
 
-TBA
+a simple todo list manager
 
 ## Features
 
 This project uses: 
 
-* React 16
-* Webpack 4
-* Babel 7
+* React 16.8
+	* React Hooks (only functional components)
+* Bootstrap 4
+* Babel
+* Webpack
+
+and a bunch of libaries that make life easier
 
 ## Installation
 
