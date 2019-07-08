@@ -1,7 +1,7 @@
 {
-  "name": "data-project",
+  "name": "todo-list",
   "version": "0.0.1",
-  "description": "tba",
+  "description": "simple todo-list",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
@@ -11,7 +11,7 @@
   "author": "Anthony Gringeri",
   "repository": {
     "type": "git",
-    "url": "git://github.com/agringeri/data-project.git"
+    "url": "git://github.com/agringeri/todo-list.git"
   },
   "license": "ISC",
   "devDependencies": {
