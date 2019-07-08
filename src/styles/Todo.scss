@@ -1,0 +1,32 @@
+.deleteIcon {
+	color: red;
+}
+
+.completeIcon {
+	color: green;
+}
+
+.undoIcon {
+	color: grey;
+}
+
+.todo-controls {
+	i {
+		cursor: pointer;
+	}
+
+	i:not(:first-child) {
+		margin-left: 1em;
+	}
+}
+
+.todo-item {
+	cursor: default !important;
+}
+
+.todo-item.completed > {
+	.todo-name {
+		color: lightgrey;
+		font-weight: normal;
+	}
+}
