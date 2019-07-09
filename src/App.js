@@ -7,29 +7,6 @@ import moment from "moment";
 import "./styles/Todo.scss";
 
 const App = () => {
-	/*
-	const initialState = [
-		{
-			text: "Clean my room",
-			isCompleted: false,
-			completedOn: "",
-			added: moment(new Date(2019, 6, 7, 21, 0, 0))
-		},
-		{
-			text: "Finish this app",
-			isCompleted: false,
-			completedOn: "",
-			added: moment(new Date(2019, 6, 7, 21, 0, 0))
-		},
-		{
-			text: "Mop the floor",
-			isCompleted: true,
-			completedOn: moment(new Date(2019, 6, 7, 21, 0, 0)),
-			added: moment(new Date(2019, 6, 7, 20, 0, 0))
-		}
-	];
-	*/
-
 	const initialState = JSON.parse(window.localStorage.getItem("todos"));
 
 	const [todos, setTodos] = useState(initialState);
@@ -41,8 +18,8 @@ const App = () => {
 
 	const addTodo = text => {
 		const newTodos = [
-			...todos,
-			{ text: text, isCompleted: false, added: moment() }
+			{ text: text, isCompleted: false, added: moment() },
+			...todos
 		];
 		setTodos(newTodos);
 	};
@@ -76,26 +53,60 @@ const App = () => {
 		setTodos(newTodos);
 	};
 
+	const filterTodos = (todos, status) =>
+		todos.filter(todo => todo.isCompleted === status);
+
 	return (
 		<div>
 			<div className="container">
 				<h1 className="mt-3">Todo List</h1>
 				<TodoForm addTodo={addTodo} />
-				<ListGroup>
-					{todos.map((todo, idx) => (
-						<Todo
-							key={idx}
-							index={idx}
-							todo={todo.text}
-							isCompleted={todo.isCompleted}
-							completedOn={todo.completedOn}
-							added={todo.added}
-							deleteTodo={deleteTodo}
-							completeTodo={completeTodo}
-							undoTodo={undoTodo}
-						/>
-					))}
-				</ListGroup>
+				<div className="mt-3">
+					{todos.filter(todo => todo.isCompleted === false).length >
+					0 ? (
+						<h2>In Progress</h2>
+					) : null}
+					<ListGroup>
+						{todos
+							.filter(todo => todo.isCompleted === false)
+							.map((todo, idx) => (
+								<Todo
+									key={idx}
+									index={idx}
+									todo={todo.text}
+									isCompleted={todo.isCompleted}
+									completedOn={todo.completedOn}
+									added={todo.added}
+									deleteTodo={deleteTodo}
+									completeTodo={completeTodo}
+									undoTodo={undoTodo}
+								/>
+							))}
+					</ListGroup>
+				</div>
+				<div className="mt-3">
+					{todos.filter(todo => todo.isCompleted === true).length >
+					0 ? (
+						<h2>Completed</h2>
+					) : null}
+					<ListGroup>
+						{todos
+							.filter(todo => todo.isCompleted === true)
+							.map((todo, idx) => (
+								<Todo
+									key={idx}
+									index={idx}
+									todo={todo.text}
+									isCompleted={todo.isCompleted}
+									completedOn={todo.completedOn}
+									added={todo.added}
+									deleteTodo={deleteTodo}
+									completeTodo={completeTodo}
+									undoTodo={undoTodo}
+								/>
+							))}
+					</ListGroup>
+				</div>
 			</div>
 		</div>
 	);
